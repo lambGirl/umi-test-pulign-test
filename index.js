@@ -45,11 +45,13 @@ module.exports = function(opts = {}) {
     dirs = dirs.filter(dir => dir.includes('-only'));
   }
 
+  //创建服务
   async function serve(base, key) {
     return new Promise((resolve) => {
       port += 1;
       servers[key] = { port };
       servers[key].server = http.createServer((request, response) => {
+          //返回一个静态服务
         return require('serve-static')(base)(request, response);
       });
       servers[key].server.listen(port, () => {
@@ -80,6 +82,7 @@ module.exports = function(opts = {}) {
     });
   }
 
+  //开启测试部分
   beforeAll(async () => {
     for (const dir of dirs) {
       const base = join(fixtures, dir);
@@ -92,11 +95,13 @@ module.exports = function(opts = {}) {
     browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   });
 
+  //开启测试部分
   beforeEach(async () => {
     page = await browser.newPage();
   });
 
   for (const dir of dirs) {
+      //开启测试
     test(dir, async () => {
       await require(join(fixtures, `${dir}/test`)).default({
         page,
@@ -105,6 +110,7 @@ module.exports = function(opts = {}) {
     });
   }
 
+  //开启测试部分
   afterAll(() => {
     Object.keys(servers).forEach(key => {
       servers[key].server.close();
