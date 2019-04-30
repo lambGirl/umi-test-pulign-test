@@ -18,6 +18,8 @@
  *  注意，衍生的 Node.js 子进程独立于父进程，但两者之间建立的 IPC 通信通道除外。 每个进程都有自己的内存，带有自己的 V8 实例。 由于需要额外的资源分配，因此不建议衍生大量的 Node.js 子进程。
  *  默认情况下， child_process.fork() 会使用父进程的 process.execPath 衍生新的 Node.js 实例。
  *
+ *
+ * https://juejin.im/post/5af90988518825426a1fcc2e
  */
 const { fork } = require('child_process');  //node的子进程管理
 
