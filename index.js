@@ -40,7 +40,8 @@ module.exports = function(opts = {}) {
   let page;
   const servers = {};
 
-  let dirs = readdirSync(fixtures).filter(dir => dir.charAt(0) !== '.');
+  let dirs = readdirSync(fixtures).filter(dir => dir.charAt(0) !== '.');    //按照路读取文件
+
   //some找到包含 '-only' 的路径
   if (dirs.some(dir => dir.includes('-only'))) {
       //过滤出包含'-only'的
@@ -83,6 +84,9 @@ module.exports = function(opts = {}) {
       });
     });
   }
+
+
+
 
   //开启测试部分
   beforeAll(async () => {
