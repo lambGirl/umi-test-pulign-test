@@ -20,6 +20,7 @@
  *
  *
  * https://juejin.im/post/5af90988518825426a1fcc2e
+ * 目的：引入 test-umi-plugin 自动跑所有 fixtures 目录下 umi 项目的用例，
  */
 const { fork } = require('child_process');  //node的子进程管理
 
@@ -116,7 +117,7 @@ module.exports = function(opts = {}) {
     });
   }
 
-  //开启测试部分
+  //结束测试部分
   afterAll(() => {
     Object.keys(servers).forEach(key => {
       servers[key].server.close();
